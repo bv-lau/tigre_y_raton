@@ -21,6 +21,8 @@ public class Main extends PApplet{
 	
 	int movParallax;
 	String[] text;
+	String[] arrayTextWords;
+	//char[] arrayWord = {'tigre', 'compartieramos', 'raton', 'flor', 'bizcocho'};
 	
 	
 	public static void main(String[] args) {
@@ -81,6 +83,14 @@ public class Main extends PApplet{
 
 		//values for move ->parallax :3
 		movParallax = 200;
+		
+		/*
+		for (int i = 0; i < text.length; i++) {
+		    int arraySplit = text[i].split();
+		    for (int j = 0; j < arraySplit.length; j++) {
+		      arrayTextWords.push(arraySplit[j]);
+		    }
+		  } */
 	}
 	
 	public void draw() {
@@ -99,12 +109,22 @@ public class Main extends PApplet{
 			image(next,622,622);
 			break;
 		case 1:
-			rectMode (CENTER);
-			rect(width/2, width/2, 50, 50);
+			imageMode (CENTER);
+			image(tiger,width/2,height/2);
+			image(rat,width/2,height/2);
+			image(strokes,width/2,height/2);
+			image(knife,70,360);
+			image(donut,70,484);
+			image(flower,70,610);
+			image(save,634,638);
 			break;
 		case 2:
 			rectMode (CENTER);
 			ellipse(width/2, width/2, 50, 50);
+			break;
+		case 3:
+			imageMode (CENTER);
+			image(alert_save,(width/2)-20,height/2);
 			break;
 			
 			default:
@@ -148,6 +168,11 @@ public class Main extends PApplet{
 				pantalla = 2;
 			} 
 			break;
+		case 2:
+			if (mouseX > 586 && mouseX < 657 && mouseY > 586 && mouseY < 657) {
+				pantalla = 3;
+			} 
+			break;
 			
 			default:
 			break;
@@ -156,11 +181,33 @@ public class Main extends PApplet{
 	
 	
 	public void mouseMoved() {
-		if (dist(posXparallax, posYparallax, mouseX, mouseY) < 700) {
+		/*if (dist(posXparallax, posYparallax, mouseX, mouseY) < 700) {
 			posXparallax = mouseX;//dragged image
 			posYparallax = mouseY;
-			
+		}*/
+		if(mouseX<374&& mouseX>329){if (dist(posXparallax, posYparallax, mouseX, mouseY) < 100){
+			posXparallax = mouseX;
+		}else {
+			posXparallax = width/2;
+		}}
+			switch(pantalla){
+			case 0:
+				if (mouseX > 586 && mouseX < 657 && mouseY > 586 && mouseY < 657) {
+					image(next,622,622,300,300);
+				} 
+				break;
+			case 1:
+				
+				break;
+			case 2:
+				 
+				break;
+				
+				default:
+				break;
 		}
+			
+		
 		/*if (dist(posXparallax, posYparallax, mouseX, mouseY) < 50) {
 			posXparallax = mouseX;
 			posYparallax = mouseX;
