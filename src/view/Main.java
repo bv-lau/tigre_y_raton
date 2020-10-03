@@ -7,6 +7,18 @@ public class Main extends PApplet{
 	
 	PImage parallax,logo,next,rat,tiger,strokes,donut,flower,knife,save,share_donut,yes_tks,donut_rat,donut_tiger,want_flower,alert_save,its_save;
 
+	int posXparallax;
+	int posYparallax;
+	
+	int pantalla;
+	
+	int posXpara;
+	int posYpara;
+	
+	int position;
+	
+	int velocity;
+	
 	int movParallax;
 	String[] text;
 	
@@ -20,6 +32,20 @@ public class Main extends PApplet{
 	}
 	
 	public void setup() {
+		
+		pantalla=0;
+		
+		//screen un center
+		posXparallax = width/2;
+		posYparallax = height/2;
+		//width/2,height/2
+		
+		posXpara =250;
+		posYpara =250;
+		
+		
+		velocity=6;
+		
 		text = loadStrings("../data/Tigre_y_Raton.txt");
 
 		//PARALLAX EFFECT (each screen):
@@ -58,11 +84,88 @@ public class Main extends PApplet{
 	}
 	
 	public void draw() {
-		//background(255);
+		background(255);
 		
 		//images:
 		imageMode (CENTER);
-		image(parallax,width/2,height/2);
+		//width/2,height/2
+		image(parallax,posXparallax, posYparallax);
+		//parallax_screen._paint();
+		
+		switch(pantalla){
+		case 0:
+			imageMode (CENTER);
+			image(logo,width/2,height/2);
+			image(next,622,622);
+			break;
+		case 1:
+			rectMode (CENTER);
+			rect(width/2, width/2, 50, 50);
+			break;
+		case 2:
+			rectMode (CENTER);
+			ellipse(width/2, width/2, 50, 50);
+			break;
+			
+			default:
+			break;
 	}
+		fill(0);
+		text(mouseX+","+mouseY,mouseX,mouseY);	
+	}
+	
+	/*public void moveParallaxxx(){
+		if(posXpara<250){
+		if(dist(posXpara,posYpara,mouseX,mouseY)<25){
+			posXparallax=posYparallax+velocity;
+			if(posXparallax>410 || posYparallax<40){
+				velocity=velocity*-1;
+			}
+		
+			
+		}
+		} else { 
+			if(dist(posXpara,posYpara,mouseX,mouseY)<25){
+				posXparallax=posXparallax+velocity;
+			if(posXparallax>410 || posXparallax<40){
+				velocity=velocity*-1;
+				}
+		
+			
+			}
+		}
+	}*/
+	
+	public void mouseReleased() {
+		switch(pantalla){
+		case 0:
+			if (mouseX > 586 && mouseX < 657 && mouseY > 586 && mouseY < 657) {
+				pantalla = 1;
+			} 
+			break;
+		case 1:
+			if (mouseX > 586 && mouseX < 657 && mouseY > 586 && mouseY < 657) {
+				pantalla = 2;
+			} 
+			break;
+			
+			default:
+			break;
+	}
+	}
+	
+	
+	public void mouseMoved() {
+		if (dist(posXparallax, posYparallax, mouseX, mouseY) < 700) {
+			posXparallax = mouseX;//dragged image
+			posYparallax = mouseY;
+			
+		}
+		/*if (dist(posXparallax, posYparallax, mouseX, mouseY) < 50) {
+			posXparallax = mouseX;
+			posYparallax = mouseX;
 
+		}*/
+		
+	}
 }
